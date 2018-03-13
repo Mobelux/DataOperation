@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum DataError: LocalizedError {
+public enum DataError: LocalizedError {
     case unknown
     case custom(String)
 
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .unknown: return NSLocalizedString("Generic.unknownError", comment: "")
         case .custom(let message): return message
@@ -20,18 +20,18 @@ enum DataError: LocalizedError {
     }
 }
 
-final class DataOperation: Operation {
+public final class DataOperation: Operation {
     private let request: Request
     private let session: Session
 
-    var result: Result<Data, DataError>?
+    public var result: Result<Data, DataError>?
 
-    init(request: Request, session: Session = URLSession(configuration: URLSessionConfiguration.default)) {
+    public init(request: Request, session: Session = URLSession(configuration: URLSessionConfiguration.default)) {
         self.request = request
         self.session = session
     }
 
-    override func start() {
+    override public func start() {
         let task = session.task(with: request) { [weak self] data, _, error in
             guard let sself = self else {
                 return
@@ -49,7 +49,7 @@ final class DataOperation: Operation {
         task?.resume()
     }
 
-    public override func cancel() {
+    override public func cancel() {
         super.cancel()
     }
 
