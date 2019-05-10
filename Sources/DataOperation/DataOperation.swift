@@ -40,9 +40,9 @@ public final class DataOperation: Operation {
             if let data = data {
                 sself.update(.success(data))
             } else if let error = error {
-                sself.update(.error(.custom(error.localizedDescription)))
+                sself.update(.failure(.custom(error.localizedDescription)))
             } else {
-                sself.update(.error(.unknown))
+                sself.update(.failure(.unknown))
             }
         }
 
