@@ -1,4 +1,6 @@
 import XCTest
 @testable import DataOperation
 
-class DataOperationTests: XCTestCase {}
+final class DataOperationTests: XCTestCase {
+    static var allTests = [()]
+}
